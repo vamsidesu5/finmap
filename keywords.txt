@@ -1,5 +1,5 @@
-Dillards = ['retail','department'],
-    Express = ['clothing','high-end','formal'],
+['retail','department'],
+['clothing','high-end','formal'],
     Petsmart = ['pet','retail'],
     OMEGA = ['jewelry','accessories','high-end'],
     Lucky = ['clothing','jeans'],

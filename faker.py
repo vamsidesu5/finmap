@@ -17,7 +17,7 @@ class Transaction:
         self.customer = customer
         self.latitude = latitude
         self.longitude = longitude
-        self.spent = spent
+        self.spent = randint()
         self.time = str(hourGenerator())
         self.day = dayGenerator()
 class Store:
@@ -79,7 +79,7 @@ def transactionPost(transaction):
             "customer":transaction.customer,
             "lat":transaction.latitude,
             "long":transaction.longitude,
-            "spent":str(weightDict[index]*randint(10,100))
+            "spent":transaction.spent
         }
         response = requests.post(
             url,
@@ -108,12 +108,12 @@ def setCustomers(firstName,lastName):
     return customerArr
 
 #method for creating transaction array
-def setTransactions(storenames,customers,latitude,longitude):
+def setTransactions(storenames,customers,latitude,longitude, weightDict):
     transactionsArr = []
     for i in range(0, len(customers) - 1):
         for x in range(0,100):
             index = randint(0,len(storenames-1))
-            transaction = Transaction(storenames[index],customers[i],latitude[i],longitude[i])
+            transaction = Transaction(storenames[index],customers[i],latitude[i],longitude[i], str(weightDict[index]*randint(10,100)))
             transactionsArr.append(transaction)
             print('trans true')
     return transactionsArr
@@ -167,7 +167,7 @@ def main():
 
     storeArr = setStores(storeName,storeDict,lat,long)
     customerArr = setCustomers(firstnames,lastnames)
-    transactionArr = setTransactions(storename,customerArr,latitude,longitude)
+    transactionArr = setTransactions(storename,customerArr,latitude,longitude,weightDict)
 
     postData(storeArr, customerArr, transactionArr)
 
