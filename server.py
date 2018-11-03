@@ -31,7 +31,10 @@ def search():
 @application.route('/transaction', methods=['POST'])
 def transaction():
     trans_info = request.form.to_dict();
-    db.transactions.insert_one({
+    trans_id = []
+    for a in db.transaction.find({"trans_name" : trans_info["storename"]}):
+        trans_id.append(a["_id"])
+    t = db.transactions.insert_one({
         "storename" : trans_info["storename"],
         "lat" : trans_info["lat"],
         "long" : trans_info["long"],
@@ -40,6 +43,8 @@ def transaction():
         "time" : trans_info["time"],
         "day" : trans_info["day"]
     })
+    id = t.insertedId
+    db.stores.update({"trans_name" : trans_info["storename"]}, {"$push": {"transactions_ids" : id}})
     store = db.stores.find_one({"name" : trans_info["storename"]})
     print(store["avg_spent"],float(store["avg_spent"]))
     curr_sum = float(store["avg_spent"])*float(store["count"])
@@ -52,12 +57,10 @@ def transaction():
                      }})
     db.stores.update({"name": trans_info["storename"]}, {"$inc": {"count" : 1}})
     return "true"
+
 @application.route('/addstore', methods=['POST'])
 def addstore():
     store_info = request.form.to_dict();
-    trans_id = []
-    for a in db.transaction.find({"trans_name" : trans_info["storename"]}):
-        trans_id.append(a["_id"])
     db.stores.insert_one({
         "name" : store_info["name"],
         "avg_spent" : 0.0,
@@ -66,7 +69,7 @@ def addstore():
         "count" : 0,
         "keywords" : store_info["keywords"],
         "classification" : store_info["classification"],
-        "transaction_id" : trans_id
+        "transaction_ids" : []
     })
     return "true"
 @application.route('/adduser', methods=['POST'])
