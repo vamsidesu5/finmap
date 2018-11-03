@@ -6,7 +6,7 @@ import time
 
 # object definitions
 class Customer:
-    def __init__(self,firstName,lastName,age,incomeLevel):
+    def __init__(self,firstName,lastName):
         self.firstName = firstName
         self.lastName = lastName
         self.age = str(randint(14,70))
@@ -59,14 +59,14 @@ def storePost(store):
             "lat":store.latitude,
             "long":store.longitude,
         }
-        print("HELLo",json.dumps(store))
+        print("HELLO",json.dumps(store))
         response = requests.post(
             url,
             data=store
         )
         print(response)
         print(response.text)
-        time.sleep(3)
+        time.sleep(0.001)
         index+=1
 
 # post method for transactions
@@ -91,10 +91,33 @@ def transactionPost(transaction):
 #method for creating store array
 def setStores(storeName,storeDict,latitude,longitude):
     storeArr = []
-    for i in range(0, storeName.length - 1):
+    for i in range(0, len(storeName) - 1):
         store = Store(storeName[i],str(storeDict[i]),latitude[i],longitude[i])
         storeArr.append(store)
+        print('store true')
     return storeArr
+
+#method for creating customer array
+def setCustomers(firstName,lastName):
+    customerArr = []
+    for i in range(0, 20):
+        index = randint(0,len(firstName-1))
+        customer = Customer(firstName[index],lastName[index])
+        customerArr.append(customer)
+        print('cust true')
+    return customerArr
+
+#method for creating transaction array
+def setTransactions(storenames,customers,latitude,longitude):
+    transactionsArr = []
+    for i in range(0, len(customers) - 1):
+        for x in range(0,100):
+            index = randint(0,len(storenames-1))
+            transaction = Transaction(storenames[index],customers[i],latitude[i],longitude[i])
+            transactionsArr.append(transaction)
+            print('trans true')
+    return transactionsArr
+
 
 #file reader for randomized names
 def fileReader(name):
@@ -124,6 +147,11 @@ def dayGenerator():
     else:
         return day[randint(0,7)]
 
+def postData(storeArr, customerArr, transactionArr):
+    storePost(storeArr)
+    customerPost(customerArr)
+    transactionPost(transactionArr)
+    print('true')
 
 
 def main():
@@ -138,11 +166,10 @@ def main():
 
 
     storeArr = setStores(storeName,storeDict,lat,long)
+    customerArr = setCustomers(firstnames,lastnames)
+    transactionArr = setTransactions(storename,customerArr,latitude,longitude)
 
-    #customerPost(firstnames, lastnames, streetname, storeDict)
-    #storePost(storename,lat,long,storeDict)
-    transactionPost(storename,lat,long,weightDict)
-
+    postData(storeArr, customerArr, transactionArr)
 
 
 if __name__ == "__main__":
