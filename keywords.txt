@@ -1,30 +1,30 @@
 ['retail','department'],
 ['clothing','high-end','formal'],
-    Petsmart = ['pet','retail'],
-    OMEGA = ['jewelry','accessories','high-end'],
-    Lucky = ['clothing','jeans'],
-    Nordstrom = ['retail','department','high-end','clothing'],
-    Williams = ['retail','home-goods','high-end'],
-    Brooks = ['clothing','high-end','formal'],
-    Louis = ['clothing','fashion','high-end','jewelry'],
-    Wendys = ['fast-food','restaurant'],
-    Cookout = ['fast-food','restaurant'],
-    Krystal = ['fast-food','restaurant'],
-    Ruths = ['high-end','steakhouse','restaurant'],
-    Melting = ['high-end','fondue','restuarant'],
-    Miel Restaurant = ['high-end','restaurant']
-    Hattie B's Hot Chicken = ['fast-food','restaurant','chicken','hot','grub szn']
-    The Row = ['restaurant','burgers','fries','seafood','beer']
-    Peg Leg Porker BBQ = ['pork','restaurant','beer','pies','bbq']
-    Jack Cawthon's Bar-B-Que = ['restaurant','brisket','bbq','beef','pork']
-    Taco Bell = ['fast-food','restaurant','tacos'],
-    Burger King = ['fast-food','restaurant','burgers']
-    Urgent Care = ['medicine','health','urgent','care']
-    Exxon = ['gas','brother need some gas bro','fastfood','oil','exxon']
-    Nashville Subaru = ['dealership','car','subaru']
-    Desano Pizza Bakery = ['bakery','pizza','desano']
-    Tin Roof = ['tin','roof','music','pub','bar','beer']
-    Losers Bar = ['losers','intimate','music','bar','beer','grub szn']
-    Chuys = ['mexican','tacos','quesadilla','blockchain','grub szn','restaurant']
-    Tavern = ['tavern','beer','casual','bar','grub szn','restaurant']
-    Urban Cookhouse = ['urban','produce','grub','local','cookhouse']
+['pet','retail'],
+['jewelry','accessories','high-end'],
+['clothing','jeans'],
+['retail','department','high-end','clothing'],
+['retail','home-goods','high-end'],
+['clothing','high-end','formal'],
+['clothing','fashion','high-end','jewelry'],
+['fast-food','restaurant'],
+['fast-food','restaurant'],
+['fast-food','restaurant'],
+['high-end','steakhouse','restaurant'],
+['high-end','fondue','restuarant'],
+['high-end','restaurant']
+['fast-food','restaurant','chicken','hot','grub szn']
+['restaurant','burgers','fries','seafood','beer']
+['pork','restaurant','beer','pies','bbq']
+['restaurant','brisket','bbq','beef','pork']
+['fast-food','restaurant','tacos'],
+['fast-food','restaurant','burgers']
+['medicine','health','urgent','care']
+['gas','brother need some gas bro','fastfood','oil','exxon']
+['dealership','car','subaru']
+['bakery','pizza','desano']
+['tin','roof','music','pub','bar','beer']
+['losers','intimate','music','bar','beer','grub szn']
+['mexican','tacos','quesadilla','blockchain','grub szn','restaurant']
+['tavern','beer','casual','bar','grub szn','restaurant']
+['urban','produce','grub','local','cookhouse']
