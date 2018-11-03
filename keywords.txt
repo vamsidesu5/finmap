@@ -1,15 +1,30 @@
-Dillards = ['retail','department'],
-    Express = ['clothing','high-end','formal'],
-    Petsmart = ['pet','retail'],
-    OMEGA = ['jewelry','accessories','high-end'],
-    Lucky = ['clothing','jeans'],
-    Nordstrom = ['retail','department','high-end','clothing'],
-    Williams = ['retail','home-goods','high-end'],
-    Brooks = ['clothing','high-end','formal'],
-    Louis = ['clothing','fashion','high-end','jewelry'],
-    Wendys = ['fast-food','restaurant'],
-    Cookout = ['fast-food','restaurant'],
-    Krystal = ['fast-food','restaurant'],
-    Ruths = ['high-end','steakhouse','restaurant'],
-    Melting = ['high-end','fondue','restuarant'],
-    Miel = ['high-end','restaurant']
+['retail','department'],
+['clothing','high-end','formal'],
+['pet','retail'],
+['jewelry','accessories','high-end'],
+['clothing','jeans'],
+['retail','department','high-end','clothing'],
+['retail','home-goods','high-end'],
+['clothing','high-end','formal'],
+['clothing','fashion','high-end','jewelry'],
+['fast-food','restaurant'],
+['fast-food','restaurant'],
+['fast-food','restaurant'],
+['high-end','steakhouse','restaurant'],
+['high-end','fondue','restuarant'],
+['high-end','restaurant']
+['fast-food','restaurant','chicken','hot','grub szn']
+['restaurant','burgers','fries','seafood','beer']
+['pork','restaurant','beer','pies','bbq']
+['restaurant','brisket','bbq','beef','pork']
+['fast-food','restaurant','tacos'],
+['fast-food','restaurant','burgers']
+['medicine','health','urgent','care']
+['gas','brother need some gas bro','fastfood','oil','exxon']
+['dealership','car','subaru']
+['bakery','pizza','desano']
+['tin','roof','music','pub','bar','beer']
+['losers','intimate','music','bar','beer','grub szn']
+['mexican','tacos','quesadilla','blockchain','grub szn','restaurant']
+['tavern','beer','casual','bar','grub szn','restaurant']
+['urban','produce','grub','local','cookhouse']
