@@ -35,7 +35,10 @@ def transaction():
         "storename" : trans_info["storename"],
         "lat" : trans_info["lat"],
         "long" : trans_info["long"],
-        "spent" : trans_info["spent"]
+        "spent" : trans_info["spent"],
+        "user_id" : db.users.find_one({"username" : trans_info["name"]})["_id"],
+        "time" : trans_info["time"],
+        "day" : trans_info["day"]
     })
     store = db.stores.find_one({"name" : trans_info["storename"]})
     print(store["avg_spent"],float(store["avg_spent"]))
@@ -52,14 +55,27 @@ def transaction():
 @application.route('/addstore', methods=['POST'])
 def addstore():
     store_info = request.form.to_dict();
-    print(store_info)
+    trans_id = []
+    for a in db.transaction.find({"trans_name" : trans_info["storename"]}):
+        trans_id.append(a["_id"])
     db.stores.insert_one({
         "name" : store_info["name"],
         "avg_spent" : 0.0,
         "lat" : store_info["lat"],
         "long" : store_info["long"],
         "count" : 0,
-        "keywords" : store_info["keywords"]
+        "keywords" : store_info["keywords"],
+        "classification" : store_info["classification"],
+        "transaction_id" : trans_id
+    })
+    return "true"
+@application.route('/adduser', methods=['POST'])
+def adduser():
+    user_info = request.form.to_dict();
+    db.users.insert_one({
+        "name" : user_info["name"],
+        "age" : user_info["age"],
+        "income_level" : user_info["income_level"]
     })
     return "true"
 
