@@ -4,7 +4,7 @@ from datetime import datetime
 from bson import ObjectId
 import pymongo
 import os
-
+import ast
 
 application = Flask(__name__)
 client = MongoClient("ds151293.mlab.com:51293",51293)
@@ -18,13 +18,19 @@ db.authenticate("admin","finmap123");
 #
 #     #})
 # })
-
 @application.route('/search', methods=['POST'])
 def search():
     query_info = request.form.to_dict();
     query = query_info["query"]
     store_lst = []
-    for a in db.stores.find_one({"keywords":query}):
+    #store name
+    #avg_spent
+    #lat
+    #long
+
+    for a in db.stores.find({"keywords":query}):
+        print(a)
+        del a["_id"]
         store_lst.append(a)
     return jsonify(store_lst)
 
@@ -39,13 +45,16 @@ def transaction():
         "lat" : trans_info["lat"],
         "long" : trans_info["long"],
         "spent" : trans_info["spent"],
-        "user_id" : db.users.find_one({"username" : trans_info["name"]})["_id"],
+        "user_id" : db.users.find_one({"first_name" : trans_info["first_name"], "last_name" : trans_info["last_name"]})["_id"],
         "time" : trans_info["time"],
         "day" : trans_info["day"]
     })
-    id = t.insertedId
-    db.stores.update({"trans_name" : trans_info["storename"]}, {"$push": {"transactions_ids" : id}})
+    id = t.inserted_id
+    print(id)
+    db.stores.update({"name" : trans_info["storename"]}, {"$push": {"transactions_ids" : str(id)}})
     store = db.stores.find_one({"name" : trans_info["storename"]})
+    print("testing",store)
+    print(trans_info["storename"])
     print(store["avg_spent"],float(store["avg_spent"]))
     curr_sum = float(store["avg_spent"])*float(store["count"])
     new_spent = float(trans_info["spent"])
@@ -61,28 +70,28 @@ def transaction():
 @application.route('/addstore', methods=['POST'])
 def addstore():
     store_info = request.form.to_dict();
+    keywords = store_info["keywords"]
     db.stores.insert_one({
         "name" : store_info["name"],
         "avg_spent" : 0.0,
         "lat" : store_info["lat"],
         "long" : store_info["long"],
         "count" : 0,
-        "keywords" : store_info["keywords"],
-        "classification" : store_info["classification"],
+        "keywords" : ast.literal_eval(keywords),
         "transaction_ids" : []
     })
     return "true"
 @application.route('/adduser', methods=['POST'])
 def adduser():
     user_info = request.form.to_dict();
+    print(user_info)
     db.users.insert_one({
-        "name" : user_info["name"],
+        "first_name" : user_info["first_name"],
+        "last_name" : user_info["last_name"],
         "age" : user_info["age"],
         "income_level" : user_info["income_level"]
     })
     return "true"
-
-
 #
 #
 # @application.route('/analytics', methods=['GET'])
